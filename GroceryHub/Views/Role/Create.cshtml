@@ -1,0 +1,30 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="m-0 font-weight-bold" style="color: #89ab2a;">Create&nbsp;</p>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="name">Role Name</label>
+                                <input name="name" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="background-color: #89ab2a;">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,26 +1,51 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+    String name;
+    AppUser Current = await UserManager.FindByNameAsync(User.Identity.Name);
+    name = Current.FirstName + " " + Current.LastName;
+
+    <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+        <div>
+            <a class="nav-link" aria-expanded="false" asp-controller="carts" asp-action="mycart">
+                <i class="fas fa-shopping-cart fa-fw" data-bs-hover-animate="swing"></i>
+            </a>
+        </div>
     </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
+    <div class="d-none d-sm-block topbar-divider"></div>
+    <li class="nav-item dropdown no-arrow" role="presentation">
+        <div class="nav-item dropdown no-arrow">
+            <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
+                <span class="d-none d-lg-inline mr-2 text-gray-600 small">@name</span>
+            </a>
+            <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+                <a class="dropdown-item" role="presentation" asp-area="Identity" asp-page="/Account/Manage/Index">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile
+                </a>
+                <a class="dropdown-item" role="presentation" asp-controller="carts" asp-action="mycart">
+                    <i class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;My List
+                </a>
+                <div class="dropdown-divider"></div>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-item dropdown-item">Logout</button>
+                </form>
+            </div>
+        </div>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link nav-link" asp-area="Identity" asp-page="/Account/Register">
+            <span class="d-none d-lg-inline mr-2 text-gray-600 small">Register</span>
+        </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link nav-link" asp-area="Identity" asp-page="/Account/Login">
+            <span class="d-none d-lg-inline mr-2 text-gray-600 small">Login</span>
+        </a>
     </li>
 }
-</ul>

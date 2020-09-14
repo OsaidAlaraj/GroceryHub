@@ -1,0 +1,83 @@
+﻿@model PaginatedList<AppUser>
+
+@{
+    ViewData["Title"] = "Users";
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+
+
+    <div class="card shadow mb-5">
+        <div class="card-header py-3 ">
+            <div class="row">
+
+                <div class="col">
+                    <h4 class="m-0 font-weight-bold" style="color: #89ab2a;">Users</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"><a asp-action="Create">Create</a></div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table dataTable my-0" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (AppUser user in Model)
+                        {
+                            <tr>
+                                <td>@user.FirstName @user.LastName</td>
+                                <td>@user.Email</td>
+                                <td><a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Edit</a></td>
+                                <td>
+                                    <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td><strong>Email</strong></td>
+                            <td><strong>Update</strong></td>
+                            <td><strong>Delete</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="page-item @prevDisabled">
+                                <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" aria-label="Previous">
+                                    <span aria-hidden="true"> << Previous Page</span>
+                                </a>
+                            </li>
+
+                            <li class="page-item @nextDisabled">
+                                <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" aria-label="Next">
+                                    <span aria-hidden="true">Next Page >> </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,49 +1,350 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GroceryHub</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>@ViewData["Title"] - Grocery Hub</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=0ef06d836a123b3b333a1a6cc94ec58e">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=18313f04cea0e078412a028c5361bd4e">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css?h=613261408a8d13448021014d13829ba1">
+    <link rel="stylesheet" href="/assets/css/customized.css">
+
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GroceryHub</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+<body id="page-top" style="background-color: rgb(248,249,252);">
+    <div class="modal fade shadow-lg" role="dialog" tabindex="-1" id="loginModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Welcome !</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body justify-content-center align-items-center align-content-center align-self-center">
+                    <div class="row">
+                        <div class="col text-center">
+                            <p class="text-center" style="font-size: 18px;">
+                                If you already have an account:
+                            </p>
+                            <a class="btn btn-primary align-items-center align-content-center align-self-center" asp-area="Identity" asp-page="/Account/Login" type="button" style="background-color: #89ab2a;">Sign In</a>
+                        </div>
+                        <div style="border-left: 1px solid #e3e6f0"></div>
+                        <div class="col text-center">
+                            <p class="text-center" style="font-size: 18px;">
+                                If you don't have an account:
+                            </p>
+                            <a class="btn btn-primary align-items-center align-content-center align-self-center" asp-area="Identity" asp-page="/Account/Register" type="button" style="background-color: #89ab2a;">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal" style="background-color: rgb(145,145,145);">Maybe Later</button>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - GroceryHub - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top align-items-start visible sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-image: url('@Url.Content("/assets/img/277279s5.png")');background-size: cover;background-position: bottom;background-repeat: no-repeat;">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" asp-controller="Home" asp-action="Index">
+                    <div class="sidebar-brand-icon">
+                        @*<i class="fas fa-laugh-wink"></i>*@
+                        <img src="/assets/img/logo.png" alt="Grocery Hub" width="50" height="50" />
+                    </div>
+                    <div class="sidebar-brand-text mx-3"><span>Grocery Hub</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar" style="background-color: rgba(0,0,0,0);">
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" style="color: rgb(109,135,38);" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-tachometer-alt" style="color: #89ab2a;font-size: 15px;"></i>
+                            <span style="color: #89ab2a;font-family: Nunito, sans-serif;font-size: 15px;"><strong>Home Page</strong></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" asp-controller="Stores" asp-action="Index" style="color: rgb(137,171,42);">
+                            <i class="fas fa-store" style="color: #89ab2a;font-size: 15px;"></i>
+                            <span style="color: #89ab2a;font-size: 15px;"><strong>Stores</strong></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" asp-controller="Categories" asp-action="Index" style="color: rgb(137,171,42);">
+                            <i class="fas fa-th" style="color: #89ab2a;font-size: 15px;"></i>
+                            <span style="color: #89ab2a;font-size: 15px;"><strong>Categories</strong></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" style="color: rgb(137,171,42);" asp-controller="Items" asp-action="Index">
+                            <i class="fas fa-carrot" style="color: #89ab2a;font-size: 15px;"></i>
+                            <span style="color: #89ab2a;font-size: 15px;"><strong>Items</strong></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" asp-controller="Offers" asp-action="Index">
+                            <i class="fas fa-tags" style="color: #89ab2a;font-size: 15px;"></i>
+                            <span style="color: #89ab2a;font-size: 15px;"><strong>Offers</strong></span>
+                        </a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" asp-controller="home" asp-action="AdminDashboard">
+                                <i class="fas fa-users" style="color: #89ab2a;font-size: 15px;"></i>
+                                <span style="color: #89ab2a;font-size: 15px;"><strong>Admin</strong></span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid">
+                        <button class="btn btn-link d-sm-block d-md-none d-lg-none d-xl-none visible rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars bounce animated" style="color: rgb(137,171,42);"></i></button>
+                        <button class="navbar-toggler" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+                        </button>
+                        <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" asp-action="Search" method="post" asp-controller="Home">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." name="searchQuery">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary py-0" type="submit" style="background-color: #89ab2a;"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="nav navbar-nav flex-nowrap ml-auto">
+                            <li class="nav-item dropdown d-sm-none no-arrow">
+                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-search"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto navbar-search w-100">
+                                        <div class="input-group">
+                                            <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <partial name="_LoginPartial" />
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-1"></h3>
+
+                    @*Alerts*@
+
+                    <div id="AddedToCart" class="alert alert-success collapse">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Added to your list</strong>
+                    </div>
+
+                    <div id="Exist" class="alert alert-danger collapse">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Already in your list</strong>
+                    </div>
+
+
+                    <div id="RemovedList" class="alert alert-success collapse">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Removed from your list</strong>
+                    </div>
+
+                    <div id="Error" class="alert alert-danger collapse">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Sorry</strong>, a technical error occurred! Please try again later
+                    </div>
+
+                    <div id="OffersAdded" class="alert alert-danger collapse">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Offers Submited</strong>
+                    </div>
+
+                    <div id="OfferAdded" class="alert alert-danger collapse">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Offer Submited</strong>
+                    </div>
+
+                    @*Alerts*@
+
+                    @RenderBody()
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="\assets\js\script.min.js"></script>
+
+
+
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $("#loginModal").modal('show');
+            });
+
+            $("#btnHideModal").click(function () {
+                $("#loginModal").modal('hide');
+            });
+        </script>
+    }
+
+
+    <script>
+
+        function submitAll(count)
+        {
+            var forms = []
+            for (var i = 1; i <=count ; i++)
+                forms.push(document.getElementById(`osaidform${i}`));
+            forms.forEach(x);
+            function x(form, i)
+            {
+                setTimeout(function () {form.submit()}, 200 * i);
+            }
+            $('#OffersAdded').show('fade');
+
+            setTimeout(function () {
+                $('#OffersAdded').hide('fade');
+            }, 2000);
+        }
+
+        function OfferAddedAlert()
+        {
+            $('#OfferAdded').show('fade');
+
+            setTimeout(function () {
+                $('#OfferAdded').hide('fade');
+            }, 2000);
+        }
+
+
+        //function AddOffer(name){
+        //$.ajax({
+        //        type: "POST",
+        //        url: '/FlyerReaders/FlyersOffers',
+        //        contentType: 'application/json; charset=utf-8',
+        //        data: {
+        //            id: id
+        //        },
+        //        data:
+        //        {
+        //            ItemName: name,
+        //            model: $(this).closest('form').serialize()
+        //        },
+        //        dataType: 'json',
+        //        async: true,
+        //        processData: false,
+        //        cache: false,
+        //        success: function(result) {
+        //        if (result.success) {
+
+        //            $('#OfferAdded').show('fade');
+
+        //            setTimeout(function () {
+        //                $('#OfferAdded').hide('fade');
+        //            }, 2000);
+        //            return false;
+        //        }
+        //    }
+        //});
+        //    return false;
+        //}
+
+        function MyPluralizer() { $.ajax({ url: '@Url.Action("MyPluralizer", "Items")' }); }
+
+        function OfferRatingSystem() {$.ajax({url: '@Url.Action("OfferRatingSystem", "Offers")'});}
+
+
+
+        function AddToCart(id){
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("AddToCart", "Offers")',
+        data: {
+        id: id
+        },
+        dataType: 'json',
+        success:
+        function (result)
+        {
+        if (result.msg == "Added") {
+        $('#AddedToCart').show('fade');
+
+        setTimeout(function () {
+        $('#AddedToCart').hide('fade');
+        },2000);
+        }
+        else
+        {
+        $('#Exist').show('fade');
+
+        setTimeout(function () {
+        $('#Exist').hide('fade');
+        }, 2000);
+        }
+        //alert("asads");
+        }
+        });
+        }
+
+        function RemoveFromCart(id) {
+        $.ajax({
+        url: '@Url.Action("RemoveFromCart", "Carts")',
+        data: {
+        id: id
+        },
+        dataType: 'json',
+        success: function(result) {
+        if (result.msg == "Removed") {
+        $('#RemovedList').show('fade');
+
+        setTimeout(function () {
+        $('#RemovedList').hide('fade');
+        location.reload(true);
+        }, 2000);
+
+
+        }
+
+        }
+        });
+        }
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>
