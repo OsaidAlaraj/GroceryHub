@@ -1,0 +1,44 @@
+﻿@model GroceryHub.Models.Advertisment
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="m-0 font-weight-bold" style="color: #89ab2a;">Creat new&nbsp;</p>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="AdvertismentID" />
+                    <div class="form-group">
+                        <label asp-for="AdvertismentName" class="control-label"></label>
+                        <input asp-for="AdvertismentName" class="form-control" />
+                        <span asp-validation-for="AdvertismentName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdvertismentPhoto" class="control-label"></label>
+                        <input asp-for="AdvertismentPhoto" class="form-control" type="file" name="img" id="img" />
+                        <span asp-validation-for="AdvertismentPhoto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdvertismentDescription" class="control-label"></label>
+                        <input asp-for="AdvertismentDescription" class="form-control" />
+                        <span asp-validation-for="AdvertismentDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GroceryHub.Models.Advertisment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdvertismentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdvertismentPhoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdvertismentDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdvertismentName)
+            </td>
+            <td>
+                @if (item.AdvertismentPhoto != null)
+                {<img class="w-100 d-block" width="225" height="153" src="data:image/png;base64,@Convert.ToBase64String(@item.AdvertismentPhoto)" alt="Slide Image" />}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdvertismentDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AdvertismentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AdvertismentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AdvertismentID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
