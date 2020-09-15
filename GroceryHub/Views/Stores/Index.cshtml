@@ -1,0 +1,123 @@
+﻿@model PaginatedList<GroceryHub.Models.Store>
+
+@{
+    ViewData["Title"] = "Stores";
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+<div class="card shadow mb-5">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-8 offset-lg-0">
+                <h4 class="m-0 font-weight-bold" style="color: #89ab2a;">Stores</h4>
+            </div>
+       
+        </div>
+        <div class="row">
+            <div class="col"><a asp-action="Create">Create</a></div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table dataTable my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().StoreName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().Location)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().Rate)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @if (item.Image != null)
+                                {<img class="rounded-circle mr-2" width="30" height="30" src="data:image/png;base64,@Convert.ToBase64String(@item.Image)" />}
+                                @Html.DisplayFor(modelItem => item.StoreName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Location)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rate)
+                            </td>
+                            <td>
+                                <div class="btn-toolbar">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a class="btn btn-primary btn-sm border rounded" type="button" style="background-color: #89ab2a;" asp-controller="Offers" asp-action="Index" asp-route-val="Store" asp-route-id="@item.StoreID">
+                                            Offers
+                                        </a>
+                                        <a class="btn btn-primary border rounded" type="button" style="background-color: #89ab2a;" asp-action="Details" asp-route-id="@item.StoreID">
+                                            Details
+                                        </a>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a class="btn btn-primary border rounded" type="button" style="background-color: #89ab2a;" asp-action="Edit" asp-route-id="@item.StoreID">
+                                                Edit
+                                            </a>
+                                            <a class="btn btn-primary border rounded" type="button" style="background-color: #89ab2a;" asp-action="Delete" asp-route-id="@item.StoreID">
+                                                Delete
+                                            </a>
+                                        }
+
+                                        </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <strong>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().StoreName)
+                            </strong>
+                        </td>
+                        <td>
+                            <strong>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Location)
+                            </strong>
+                        </td>
+                        <td>
+                            <strong>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Rate)
+                            </strong>
+                        </td>
+                        <td><strong></strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-6 align-self-center">
+            </div>
+            <div class="col-md-6">
+                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        <li class="page-item @prevDisabled">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" aria-label="Previous">
+                                <span aria-hidden="true"> << Previous Page</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item @nextDisabled">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" aria-label="Next">
+                                <span aria-hidden="true">Next Page >> </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

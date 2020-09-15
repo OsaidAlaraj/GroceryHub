@@ -1,0 +1,157 @@
+﻿@model PaginatedList<GroceryHub.Models.Offer>
+
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+    ViewData["Title"] = "Offers";
+
+    Offer BestPrice = ViewBag.BestPrice;
+}
+
+<div class="card shadow mb-5">
+
+    <div class="card-header py-3 ">
+        <div class="row">
+
+            <div class="col">
+                <h4 class="m-0 font-weight-bold" style="color: #89ab2a;">Offers</h4>
+            </div>
+        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="row">
+                <div class="col"><a asp-action="Create">Create</a></div>
+            </div>
+        }
+    </div>
+    <div class="card-body">
+        <div class="row">
+            @if (Model.Count > 1 && BestPrice != null)
+            {
+
+                <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 mb-4" style="height: 380px;">
+                    <div class="card border rounded" style="width: 181px;height: 374px;">
+                        <img class="rounded img-fluid card-img-top w-100 d-block border" src="data:image/png;base64,@Convert.ToBase64String(BestPrice.Item.Image)" style="width: 198px;height:181px;object-fit:cover;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="text-break">
+                                        @BestPrice.Item.ItemName
+                                        <span class="badge badge-danger small">Best Price</span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" style="height:72px;">
+                                    <p>
+                                        @BestPrice.OfferDescription
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7 col-sm-7 col-md-7 col-lg-6 mb-auto">
+                                    <h6 class="m-auto">
+                                        @BestPrice.Price
+                                        <br>
+                                    </h6>
+                                </div>
+                                <div class="col-xl-6 m-auto" style="margin: 0px;margin-right: 0px;margin-left: 0px;padding: 0px;">
+                                    <a asp-action="Details" asp-route-id="@BestPrice.OfferID" class="btn btn-primary btn-sm" type="button" style="background-color: #89ab2a;margin: 0px;margin-right: 15px;width: 30px;height: 30px;">
+                                        <i class="fa fa-info"></i>
+                                    </a>
+                                    <a href="#" onclick="AddToCart(@BestPrice.OfferID);" class="btn btn-primary btn-sm" type="button" style="background-color: #89ab2a;margin: 0px;width: 30px;height: 30px;">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <a asp-action="Edit" asp-route-id="@BestPrice.OfferID">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@BestPrice.OfferID">Delete</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            }
+
+
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 mb-4" style="height: 380px;">
+                    <div class="card border rounded" style="width: 181px;height: 374px;">
+                        <img class="rounded img-fluid card-img-top w-100 d-block border" src="data:image/png;base64,@Convert.ToBase64String(@item.Item.Image)" style="width: 198px;height:181px;object-fit:cover;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="text-break">
+                                        @Html.DisplayFor(modelItem => item.Item.ItemName)
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" style="height:72px;">
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.OfferDescription)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7 col-sm-7 col-md-7 col-lg-6 mb-auto">
+                                    <h6 class="m-auto">
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                        <br>
+                                    </h6>
+                                </div>
+                                <div class="col-xl-6 m-auto" style="margin: 0px;margin-right: 0px;margin-left: 0px;padding: 0px;">
+                                    <a asp-action="Details" asp-route-id="@item.OfferID" class="btn btn-primary btn-sm" type="button" style="background-color: #89ab2a;margin: 0px;margin-right: 15px;width: 30px;height: 30px;">
+                                        <i class="fa fa-info"></i>
+                                    </a>
+                                    <a href="#" onclick="AddToCart(@item.OfferID);" class="btn btn-primary btn-sm" type="button" style="background-color: #89ab2a;margin: 0px;width: 30px;height: 30px;">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <a asp-action="Edit" asp-route-id="@item.OfferID">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.OfferID">Delete</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-6 align-self-center">
+            </div>
+            <div class="col-md-6">
+                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        <li class="page-item @prevDisabled">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" aria-label="Previous">
+                                <span aria-hidden="true"> << Previous Page</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item @nextDisabled">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" aria-label="Next">
+                                <span aria-hidden="true">Next Page >> </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

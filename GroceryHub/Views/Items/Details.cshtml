@@ -1,0 +1,43 @@
+﻿@model GroceryHub.Models.Item
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="m-0 font-weight-bold" style="color: #89ab2a;">Details&nbsp;</p>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ItemName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ItemName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Image)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @if (Model.Image != null)
+                        {
+                        <img class="rounded img-fluid card-img-top w-100 d-block border" wstyle="width: 198px;" src="data:image/png;base64,@Convert.ToBase64String(@Model.Image)" />
+                        }
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Category)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Category.CategoryName)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a class="btn btn-success btn-sm" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

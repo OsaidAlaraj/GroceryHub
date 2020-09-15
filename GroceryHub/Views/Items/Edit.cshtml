@@ -1,0 +1,59 @@
+﻿@model GroceryHub.Models.Item
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="m-0 font-weight-bold" style="color: #89ab2a;">Creat new&nbsp;</p>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit"enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ItemID" />
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong><label asp-for="ItemName" class="control-label"></label></strong>
+                                <input asp-for="ItemName" class="form-control" />
+                                <span asp-validation-for="ItemName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong>
+                                    <label asp-for="CategoryID" class="control-label"></label>
+                                </strong>
+                                <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <strong>
+                                    <label asp-for="Image" class="control-label"></label>
+                                </strong>
+                                <input asp-for="Image" class="form-control" type="file" name="img" id="img" />
+                                <span asp-validation-for="Image" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Save" style="background-color: #89ab2a;" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

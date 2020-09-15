@@ -1,0 +1,140 @@
+﻿@model GroceryHub.Models.Offer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="m-0 font-weight-bold" style="color: #89ab2a;">Creat new&nbsp;</p>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post" asp-controller="Offers">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row">
+
+
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong>
+                                    <label asp-for="Price" class="control-label"></label>
+                                </strong>
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong>
+                                    <label asp-for="OfferDescription" class="control-label"></label>
+                                </strong>
+                                <input asp-for="OfferDescription" class="form-control" />
+                                <span asp-validation-for="OfferDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong>
+                                    <label asp-for="StartDate" class="control-label"></label>
+                                </strong>
+                                <input asp-for="StartDate" class="form-control" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong>
+                                    <label asp-for="DueDate" class="control-label"></label>
+                                </strong>
+                                <input asp-for="DueDate" class="form-control" />
+                                <span asp-validation-for="DueDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong>
+
+                                    <label asp-for="StoreID" class="control-label"></label>
+                                </strong>
+
+                                <select asp-for="StoreID" class="form-control" asp-items="ViewBag.StoreID"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <strong>
+
+                                    <label asp-for="ItemID" class="control-label"></label>
+                                </strong>
+
+                                <select asp-for="ItemID" class="form-control" asp-items="ViewBag.ItemID"></select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        @*<div class="col-lg-6">
+                <div class="form-group">
+                    <strong>
+                        <label asp-for="Level" class="control-label"></label>
+                    </strong>
+                    <input asp-for="Level" class="form-control" />
+                    <span asp-validation-for="Level" class="text-danger"></span>
+                </div>
+            </div>*@
+                        @*<div class="col-lg-6">
+                            <div class="form-group">
+                                <strong><label asp-for="Unit" class="control-label"></label></strong>
+                                <input asp-for="Unit" class="form-control" />
+                                <span asp-validation-for="Unit" class="text-danger"></span>
+                            </div>
+                        </div>*@
+
+
+                    </div>
+
+
+                    @*<div class="form-row">
+
+            <div class="col-lg-6">
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsValid" /> @Html.DisplayNameFor(model => model.IsValid)
+                    </label>
+                </div>
+            </div>
+
+        </div>*@
+
+
+                    <div class="form-group text-right">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Create" style="background-color: #89ab2a;" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
