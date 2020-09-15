@@ -1,0 +1,90 @@
+﻿@model PaginatedList<GroceryHub.Models.Category>
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+    ViewData["Title"] = "Categories";
+
+
+}
+
+
+<div class="card shadow mb-5">
+
+    <div class="card-header py-3 ">
+        <div class="row">
+
+            <div class="col">
+                <h4 class="m-0 font-weight-bold" style="color: #89ab2a;">Categories</h4>
+            </div>
+        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="row">
+                <div class="col"><a asp-action="Create">Create</a></div>
+            </div>
+        }
+
+        </div>
+    <div class="card-body">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 mb-4" style="height: 350.6px;">
+                <div class="card border rounded" style="width: 181px;height: 350.6px;">
+
+                    @if (item.Icon != null)
+                    {
+                        <img class="rounded img-fluid card-img-top w-100 d-block border"
+                             style="min-height:181px;min-width:181px;max-height:181px;max-width:181px;object-fit:cover;"
+                             src="data:image/png;base64,@Convert.ToBase64String(@item.Icon)" />
+                    }
+
+                    <div class="card-body">
+                        <div>
+                            <h4 class="card-title" style="min-height:57.6px;">
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+                            </h4>
+                        </div>
+
+                        <a class="btn btn-primary d-lg-flex ml-auto" type="button" asp-controller="Items" asp-action="Index" asp-route-id="@item.CategoryID" style="background-color: rgb(137,171,42);">Show Items</a>
+                    </div>
+                </div>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <a asp-route-id="@item.CategoryID" asp-action="Delete">Delete</a>
+                            <a asp-route-id="@item.CategoryID" asp-action="Edit">Edit</a>
+                            <a asp-route-id="@item.CategoryID" asp-action="Details">Details</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            }
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 align-self-center">
+            </div>
+            <div class="col-md-6">
+                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        <li class="page-item @prevDisabled">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" aria-label="Previous">
+                                <span aria-hidden="true"> << Previous Page</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item @nextDisabled">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" aria-label="Next">
+                                <span aria-hidden="true">Next Page >> </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
