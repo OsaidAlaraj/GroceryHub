@@ -1,0 +1,58 @@
+﻿
+@model GroceryHub.ViewModels.FlyerReaderViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Flyer Reader</h4>
+<hr />
+<div class="row">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="m-0 font-weight-bold" style="color: #89ab2a;">Creat new&nbsp;</p>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <strong><label asp-for="StoreID" class="control-label"></label></strong>
+                        <select asp-for="StoreID" class="form-control" asp-items="ViewBag.StoreID"></select>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <stromg><label asp-for="StartDate" class="control-label"></label></stromg>
+                                <input asp-for="StartDate" class="form-control" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <stromg><label asp-for="DueDate" class="control-label"></label></stromg>
+                                <input asp-for="DueDate" class="form-control" />
+                                <span asp-validation-for="DueDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <strong><label asp-for="photos" class="control-label"></label></strong>
+                                <input asp-for="photos" class="form-control" type="file" multiple />
+                                <span asp-validation-for="photos" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-right"><button class="btn btn-primary btn-sm" type="submit" style="background-color: #89ab2a;">Create</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,20 @@
+﻿@model String
+@{
+    string[] words = Model.Split('$');
+    string item = words[0];
+    string offers = words[1];
+}
+<div class="row">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <p class="text-left m-0 font-weight-bold" style="color: #89ab2a;">Thank You !</p>
+            </div>
+            <div class="card-body">
+                <h1 class="display-1 text-center tada animated" style="color: #89ab2a;">Thank You !</h1>
+                <h2 class="text-center">You have submited @offers Offers &amp; @item Items</h2>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-block btn-lg" data-bs-hover-animate="pulse" type="button" style="background-color: #89ab2a;">Go To Home Page</a>
+            </div>
+        </div>
+    </div>
+</div>
