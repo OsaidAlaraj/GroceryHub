@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewData["Title"] = "AdminDashboard";
+}
+
+<h1>Admin Dashboard</h1>
+
+<div class="row">
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-action="Index" asp-controller="Admin" style="color: rgb(28,200,138);">Users</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-user fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-action="Index" asp-controller="Role" style="color: rgb(28,200,138);">Roles</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-list fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-action="Create" asp-controller="Stores" style="color: rgb(28,200,138);">Create Stores</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-store fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-action="Create" asp-controller="Items" style="color: rgb(28,200,138);">Create Items</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-grip-horizontal fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-action="Create" asp-controller="Offers" style="color: rgb(28,200,138);">Create Offers</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fab fa-buffer fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-action="Create" asp-controller="Advertisments" style="color: rgb(28,200,138);">Create&nbsp;Advertisments</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-ad fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-action="Create" asp-controller="FlyerReaders" style="color: rgb(28,200,138);">Scan Store Flier</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-book-open fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a href="#" onclick="MyPluralizer()" style="color: rgb(28,200,138);">
+                                    Refresh Items Name
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-redo-alt fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a href="#" onclick="OfferRatingSystem()" style="color: rgb(28,200,138);">
+                                    Refresh Offers Rate
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-star-half-alt fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

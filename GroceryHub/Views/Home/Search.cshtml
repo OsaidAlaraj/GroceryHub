@@ -1,0 +1,193 @@
+﻿@model GroceryHub.ViewModels.SearchViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+
+    if (Model.categories.Count != 0)
+        ViewBag.categories = true;
+    else
+        ViewBag.categories = false;
+
+    if (Model.items.Count != 0)
+        ViewBag.items = true;
+    else
+        ViewBag.items = false;
+
+    if (Model.stores.Count != 0)
+        ViewBag.stores = true;
+    else
+        ViewBag.stores = false;
+}
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<h3 class="text-dark mb-1">Serch result for "@Model.searchQuery":</h3>
+<hr>
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12 m-1 p-1" style="height: 100%;">
+        <div class="card shadow mb-4 overflow-auto">
+            <div class="card-header py-3" style="width:100%">
+                <h6 class="text-success font-weight-bold m-0">Categories</h6>
+            </div>
+            <div class="list-group list-group-horizontal">
+                @if (ViewBag.categories)
+                {
+
+                    <!-- Start: Category Card -->
+                    @foreach (var item in Model.categories)
+                    {
+
+                        <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 mb-4" style="height: 350.6px;">
+                            <div class="card border rounded" style="width: 181px;height: 350.6px;">
+
+                                @if (item.Icon != null)
+                                {
+                                    <img class="rounded img-fluid card-img-top w-100 d-block border"
+                                         style="min-height:181px;min-width:181px;max-height:181px;max-width:181px;object-fit:cover;"
+                                         src="data:image/png;base64,@Convert.ToBase64String(@item.Icon)" />
+                                }
+
+                                <div class="card-body">
+                                    <div>
+                                        <h4 class="card-title" style="min-height:57.6px;">
+                                            @item.CategoryName
+                                        </h4>
+                                    </div>
+
+                                    <a class="btn btn-primary d-lg-flex ml-auto" type="button" asp-controller="Items" asp-action="Index" asp-route-id="@item.CategoryID" style="background-color: rgb(137,171,42);">Show Items</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h5 class="text-dark mb-1">No Categories founded</h5>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    
+<div class="row">
+    <div class="col-lg-12 col-xl-12 m-1 p-1" style="height: 100%;">
+        <div class="card shadow mb-4 overflow-auto">
+            <div class="card-header py-3" style="width:100%">
+                <h6 class="text-success font-weight-bold m-0">Items</h6>
+            </div>
+            <div class="list-group list-group-horizontal">
+                @if (ViewBag.items)
+                {
+                    @foreach (var item in Model.items)
+                    {
+
+                        <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 mb-4" style="height: 350.6px;">
+                            <div class="card border rounded" style="width: 181px;height: 350.6px;">
+                                @if (item.Image != null)
+                                {
+                                    <img class="rounded img-fluid card-img-top w-100 d-block border"
+                                         style="min-height:181px;min-width:181px;max-height:181px;max-width:181px;object-fit:cover;"
+                                         src="data:image/png;base64,@Convert.ToBase64String(@item.Image)" />
+                                }
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 style="min-height:57.6px;">
+                                                @item.ItemName
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-primary d-lg-flex ml-auto" asp-route-id="@item.ItemID" asp-route-val="Item" asp-action="Index" asp-controller="Offers" type="button" style="background-color: rgb(137,171,42);">Show Offers</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h5 class="text-dark mb-1">No Items founded</h5>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12 m-1 p-1" style="height: 100%;">
+        <div class="card shadow mb-4 overflow-auto">
+            <div class="card-header py-3" style="width:100%">
+                <h6 class="text-success font-weight-bold m-0">Stores</h6>
+            </div>
+            <div class="list-group list-group-horizontal">
+                @if (ViewBag.stores)
+                {
+                    @foreach (var item in Model.stores)
+                    {
+                        <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 mb-4" style="height: 327px;">
+                            <div class="card border rounded" style="width: 181px;height: 297px;">
+                                <img class="rounded img-fluid card-img-top w-100 d-block border" src="data:image/png;base64,@Convert.ToBase64String(@item.Image)" style="width: 198px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4>
+                                                @Html.DisplayFor(modelItem => item.StoreName)
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-primary d-lg-flex ml-auto" asp-route-id="@item.StoreID" asp-action="Index" asp-controller="Offers" type="button" style="background-color: rgb(137,171,42);">Show Offers</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h5 class="text-dark mb-1">No Stores founded</h5>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<h5 class="text-dark mb-1">Stores</h5>
+<div class="row">
+    @if (ViewBag.stores)
+    {
+        @foreach (var item in Model.stores)
+        {
+            <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 mb-4" style="height: 327px;">
+                <div class="card border rounded" style="width: 181px;height: 297px;">
+                    <img class="rounded img-fluid card-img-top w-100 d-block border" src="data:image/png;base64,@Convert.ToBase64String(@item.Image)" style="width: 198px;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h4>
+                                    @Html.DisplayFor(modelItem => item.StoreName)
+                                </h4>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary d-lg-flex ml-auto" asp-route-id="@item.StoreID" asp-action="Index" asp-controller="Offers" type="button" style="background-color: rgb(137,171,42);">Show Offers</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h5 class="text-dark mb-1">No Stores founded</h5>
+    }
+</div>
+<hr>*@
+

@@ -1,8 +1,271 @@
-﻿@{
+﻿@model GroceryHub.ViewModels.HomeViewModel;
+@{
     ViewData["Title"] = "Home Page";
+
+    if (Model.HotOffers.Count != 0)
+        ViewBag.HotOffers = true;
+    else
+        ViewBag.HotOffers = false;
+
+    if (Model.LastAddedOffers.Count != 0)
+        ViewBag.LastAddedOffers = true;
+    else
+        ViewBag.LastAddedOffers = false;
+
+    if (Model.TopRatedStores.Count != 0)
+        ViewBag.TopRatedStores = true;
+    else
+        ViewBag.TopRatedStores = false;
+
+    if (Model.AvailableItems.Count != 0)
+        ViewBag.AvailableItems = true;
+    else
+        ViewBag.AvailableItems = false;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+
+
+@if (Model.Advertisments != null)
+{
+    <div class="row">
+        <div class="col">
+            <div class="carousel slide cont" data-ride="carousel" id="carousel-1">
+                <div class="carousel-inner shadow-sm mb-3" role="listbox" style="height:100%;">
+                    @{int i = 0;}
+                    @foreach (var item in Model.Advertisments)
+                    {
+                        i++;
+                        var active = i == 1 ? "active" : "";
+                        <div class="carousel-item @active">
+                            @if (item.AdvertismentPhoto != null)
+                            {<img class="w-100 d-block" src="data:image/png;base64,@Convert.ToBase64String(@item.AdvertismentPhoto)" alt="Slide Image" />}
+                            <div class="overlay">
+                                <div class="description">@item.AdvertismentDescription</div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div>
+                    <!-- Start: Previous -->
+                    <a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
+                        <span class="fas fa-chevron-circle-left fa-3x" aria-hidden="true" style="color:rgba(137, 171, 42, 0.61)"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <!-- End: Previous -->
+                    <!-- Start: Next -->
+                    <a class="carousel-control-next" href="#carousel-1" role="button" data-slide="next">
+                        <span class="fas fa-chevron-circle-right fa-3x" aria-hidden="true" style="color:rgba(137, 171, 42, 0.61)">
+                        </span><span class="sr-only">Next</span>
+                    </a>
+                    <!-- End: Next -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-area="Identity" asp-page="/Account/Manage/Index" style="color: rgb(28,200,138);">Profile</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-user fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-controller="carts" asp-action="mycart" style="color: rgb(28,200,138);">My list</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-list fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col-sm-10 col-md-9 col-xl-9 mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-controller="Categories" asp-action="Index" style="color: rgb(28,200,138);">Categories</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto col-xl-2"><i class="fas fa-newspaper fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-success py-2" data-bs-hover-animate="pulse">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1" style="font-size: 20px;">
+                            <span style="font-size: 24;">
+                                <a asp-controller="Stores" asp-action="Index" style="color: rgb(28,200,138);">Stores</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-store fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-6 col-xl-4 mb-1" style="height: 375px;">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="text-success font-weight-bold m-0">Top Rated Stores</h6>
+            </div>
+            <div class="list-group list-group-flush scrollable">
+                @if (ViewBag.TopRatedStores)
+                {
+                    @foreach (var item in Model.TopRatedStores)
+                    {
+                        <a class="list-group-item list-group-item-action" asp-controller="Stores" asp-action="Details" asp-route-id="@item.StoreID">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col-sm-9 col-lg-8 col-xl-6 mr-2">
+                                    <h6 class="mb-0">
+                                        <strong>@item.StoreName</strong>
+                                    </h6>
+                                    <span class="text-xs">@item.Location</span>
+                                </div>
+
+                                <div class="col offset-xl-1">
+                                    @for (int i = 0; i < item.Rate; i++)
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-6 col-xl-4 mb-1" style="height: 375px;">
+        <div class="card shadow mb-4 overflow-auto">
+            <div class="card-header py-3">
+                <h6 class="text-success font-weight-bold m-0">Lastest Offers</h6>
+            </div>
+            <div class="list-group list-group-flush scrollable">
+                @if (ViewBag.LastAddedOffers)
+                {
+                    foreach (var item in Model.LastAddedOffers)
+                    {
+                        <a class="list-group-item list-group-item-action" asp-action="Details" asp-controller="Offers" asp-route-id="@item.OfferID">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col mr-2">
+                                    <h6 class="mb-0">
+                                        <strong>@item.Item.ItemName</strong>
+                                    </h6><span class="text-xs">End date : @item.DueDate.ToShortDateString()</span>
+                                </div>
+                                <div class="col">
+                                    <p class="text-center">@item.Price$</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-xl-4 mb-1" style="height: 375px;">
+        <div class="card shadow mb-4 overflow-auto">
+            <div class="card-header py-3">
+                <h6 class="text-success font-weight-bold m-0">Hot Offers</h6>
+            </div>
+            <div class="list-group list-group-flush scrollable">
+                @if (ViewBag.HotOffers)
+                {
+                    foreach (var item in Model.HotOffers)
+                    {
+                        <a class="list-group-item list-group-item-action" asp-action="Details" asp-controller="Offers" asp-route-id="@item.OfferID">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col mr-2">
+                                    <h6 class="mb-0">
+                                        <strong>@item.Item.ItemName</strong>
+                                    </h6><span class="text-xs">End date : @item.DueDate.ToShortDateString()</span>
+                                </div>
+                                <div class="col">
+                                    <p class="text-center">@item.Price$</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-xl-12 m-1 p-1" style="height: 100%;">
+        <div class="card shadow mb-4 overflow-auto">
+            <div class="card-header py-3" style="width:100%">
+                <h6 class="text-success font-weight-bold m-0">Availabe Items</h6>
+            </div>
+            <div class="list-group list-group-horizontal">
+                @if (ViewBag.AvailableItems)
+                {
+                    foreach (var item in Model.AvailableItems)
+                    {
+                        <a class="list-group-item list-group-item-action m-1 p-1" asp-route-id="@item.ItemID" asp-route-val="Item" asp-action="Index" asp-controller="Offers">
+                            <div class="col-sm-6 col-md-5 col-lg-3 col-xl-2 offset-lg-0 offset-xl-0 m-1 p-1 text-center">
+                                <div class="card border rounded m-auto" style="width:181px; height: 297px;">
+                                    @if (item.Image != null)
+                                    {
+                                        <img class="rounded img-fluid card-img-top w-100 d-block border"
+                                             style="min-height:181px;min-width:181px;max-height:181px;max-width:181px;object-fit:cover;"
+                                             src="data:image/png;base64,@Convert.ToBase64String(@item.Image)" />
+                                    }
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h3>
+                                                    <strong>
+                                                        @item.ItemName
+                                                    </strong>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
 </div>
