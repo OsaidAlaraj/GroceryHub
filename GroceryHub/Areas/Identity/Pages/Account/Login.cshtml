@@ -1,0 +1,176 @@
+﻿@page
+@model LoginModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Log in";
+}
+
+@*<div class="row">
+        <div class="col-md-4">
+            <section>
+                <form id="account" method="post">
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Log in</button>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p>
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        </p>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>*@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css?h=b9fb63978a8027e0ef5e0b3535e941db">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/assets/fonts/fontawesome5-overrides.min.css?h=18313f04cea0e078412a028c5361bd4e">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="~/assets/css/styles.min.css?h=613261408a8d13448021014d13829ba1">
+</head>
+
+<body class="bg-gradient-primary" style="background-color: #f8f9fc;background-image: url(&quot;none&quot;);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg pulse animated o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-4 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;/assets/img/14618.jpg?h=04358efd6921b9965804cde90d4d8338&quot;);"></div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                    </div>
+                                    <form class="user" id="account" method="post">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                                        <div class="form-group">
+                                            <input class="form-control form-control-user" type="email" placeholder="Enter Email Address..." asp-for="Input.Email">
+                                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input class="form-control form-control-user" placeholder="Password" asp-for="Input.Password">
+                                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="checkbox small">
+                                                <label asp-for="Input.RememberMe">
+                                                    <input asp-for="Input.RememberMe" />
+                                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <button class="btn btn-primary btn-block text-white btn-user" data-bs-hover-animate="bounce" type="submit" style="background-color: #89ab2a;">Login</button>
+
+                                        @*<hr>
+
+                                            <a class="btn btn-primary btn-block text-white btn-google btn-user" role="button">
+                                                <i class="fab fa-google"></i>&nbsp; Login with Google
+                                            </a>
+                                            <a class="btn btn-primary btn-block text-white btn-facebook btn-user" role="button">
+                                                <i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook
+                                            </a>
+
+                                            <hr>*@
+                                    </form>
+
+                                    <div class="col-md-offset-2">
+                                        <section>
+                                            <hr />
+                                            @{
+                                                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                                    <div>
+                                                        <p>
+                                                            @foreach (var provider in Model.ExternalLogins)
+                                                            {
+                                                                if (provider.DisplayName.ToLower() == "google")
+                                                                {
+                                                                    <button class="btn btn-primary btn-block text-white btn-google btn-user" name="provider" value="@provider.Name" type="submit">
+                                                                        <i class="fab fa-google"></i>&nbsp; Login with Google
+                                                                    </button>
+                                                                }
+
+                                                                else if (provider.DisplayName.ToLower() == "facebook")
+                                                                {
+                                                                    <button class="btn btn-primary btn-block text-white btn-facebook btn-user" name="provider" value="@provider.Name" type="submit">
+                                                                        <i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook
+                                                                    </button>
+                                                                }
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </form>
+                                            }
+
+                                        </section>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="assets/js/script.min.js?h=b60a29c779e76d5b357354bc0e3787e1"></script>
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

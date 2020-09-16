@@ -1,0 +1,163 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = null;
+
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register</title>
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css?h=b9fb63978a8027e0ef5e0b3535e941db">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/assets/fonts/fontawesome5-overrides.min.css?h=18313f04cea0e078412a028c5361bd4e">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="~/assets/css/styles.min.css?h=613261408a8d13448021014d13829ba1">
+</head>
+
+<body class="bg-gradient-primary" style="background-color: #f8f9fc;background-image: url(&quot;none&quot;);">
+    <div class="container">
+        <div class="card shadow-lg justify-content-lg-start pulse animated o-hidden border-0 my-5">
+            <div class="card-body p-0">
+                <div class="row" style="background-color: rgba(137,171,42,0.61);background-image: url(&quot;/assets/img/14618.jpg?h=04358efd6921b9965804cde90d4d8338&quot;);&quot;);&quot;);background-position: center;background-position: right;">
+                    <div class="col-lg-9 offset-lg-3" style="background-color: #f8f9fc;">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4">Create an Account!</h4>
+                            </div>
+                            <form class="user" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="text" placeholder="First Name" asp-for="Input.FirstName">
+                                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" type="text" placeholder="Last Name" asp-for="Input.LastName">
+                                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="email" placeholder="Email Address" asp-for="Input.Email">
+                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" placeholder="Phone Number" asp-for="Input.PhoneNumber">
+                                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="date" placeholder="Date Of Birth" asp-for="Input.DateOfBirth">
+                                        <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <select class="form-control"
+                                                asp-items="@Html.GetEnumSelectList<Governorates>()" asp-for="Input.Address"></select>
+                                        <span asp-validation-for="Input.Address" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="password" placeholder="Password" asp-for="Input.Password">
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" type="password" placeholder="Repeat Password"
+                                               asp-for="Input.ConfirmPassword">
+                                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary btn-block text-white btn-user" type="submit" style="background-color: #89ab2a;">Register Account</button>
+                                <hr>
+
+
+
+
+
+                            </form>
+                            <div class="form-row">
+                                <div class="col">
+                                    @{
+                                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                            <div>
+                                                <p>
+                                                    @foreach (var provider in Model.ExternalLogins)
+                                                    {
+                                                        if (provider.DisplayName.ToLower() == "google")
+                                                        {
+                                                            <div class="col">
+
+                                                                <button class="btn btn-primary btn-block text-white btn-google btn-user" name="provider" value="@provider.Name" type="submit">
+                                                                    <i class="fab fa-google"></i>&nbsp; Login with Google
+                                                                </button>
+                                                            </div>
+
+                                                        }
+
+                                                        else if (provider.DisplayName.ToLower() == "facebook")
+                                                        {
+                                                            <div class="col">
+
+                                                                <button class="btn btn-primary btn-block text-white btn-facebook btn-user" name="provider" value="@provider.Name" type="submit">
+                                                                    <i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook
+                                                                </button>
+                                                            </div>
+
+                                                        }
+                                                    }
+                                                </p>
+                                            </div>
+                                        </form>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <a class="small" asp-area="Identity" asp-page="/Account/Login">Already have an account? Login!</a>
+                            </div>
+                            <div class="text-center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="~/assets/js/script.min.js?h=b60a29c779e76d5b357354bc0e3787e1"></script>
+</body>
+
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
