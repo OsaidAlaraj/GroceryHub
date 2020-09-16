@@ -11,6 +11,10 @@ Install Plurally from the nuget package manager
 
 Install Google.Cloud.Vision.V1 from the nuget package manager
 
+You may need to add google credentials, check out this link:
+
+https://cloud.google.com/vision/docs/libraries
+
 -----------------------------------------------------------------
 
 Admin : 
