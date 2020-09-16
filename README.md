@@ -19,4 +19,14 @@ admin@admin.admin
 
 P@ssw0rd
 
+User :
+
+user@user.user
+
+P@ssw0rd
+
+-----------------------------------------------------------------
+
+You can use Sliced Flyers.rar to test flyer reader functions
+
 -----------------------------------------------------------------
